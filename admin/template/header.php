@@ -1,12 +1,12 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
-<link rel="stylesheet" href="../../js/jquery-ui/jquery-ui.css" type="text/css">
+<link rel="stylesheet" href="../../assets/js/jquery-ui/jquery-ui.css" type="text/css">
 <link rel="stylesheet" href="../CSS/admin.css" type="text/css">
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
-<script src="../../js/validator.min.js"></script>
-<script type="text/javascript" src="../../js/jquery.js"></script>
-<script type="text/javascript" src="../../js/jquery-ui/jquery-ui.js"></script>
+<script src="../../assets/js/validator.min.js"></script>
+<script type="text/javascript" src="../../assets/js/jquery.js"></script>
+<script type="text/javascript" src="../../assets/js/jquery-ui/jquery-ui.js"></script>
 <script type="text/javascript" src="../../tinymce/tinymce.min.js"></script>
 <script type="text/javascript" src="../../tinymce/skins/lightgray/skin.min.js"></script>
 <script type="text/javascript">
