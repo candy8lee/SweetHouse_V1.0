@@ -1,0 +1,103 @@
+#ProductTable{
+  width: 80%;
+  text-align: center;
+}
+#ProductTable input[type="text"]{
+  height: 30px;
+  width: 50px;
+  line-height: 30px;
+  float: left;
+  text-align: center;
+}
+#ProductTable td{
+  height: 40px;
+  line-height: 40px;
+}
+.content-left img{
+  width: 100%;
+  height: auto;
+}
+.price{
+  font-size: 20px;
+  font-weight: bold;
+  color:#CB3362;
+}
+.cart{
+  width: 150px;
+  height: 40px;
+  background: #fff;
+  line-height:30px;
+  margin-top: 20px;
+  color:#CB3362;
+  font-size: 20px;
+  border: 2px solid #cbb5bc;
+  display: block;
+  margin-left:auto;
+}
+.cart:hover{
+  background: #ed6fa0;
+  border:none;
+  color:#fff;
+}
+.content-left{
+  width:100%;
+
+}
+.content-right{
+  width:50%;
+  margin: auto;
+
+}
+.quantity-button{
+  height:30px;
+  width:20px;
+  background: #cbcbcb;
+  text-align: center;
+  line-height:30px;
+  float: left;
+  cursor: pointer;
+}
+.quantity-button:hover{
+  background: #676565;
+  color:#fff;
+}
+.quantity input[type="text"]{
+  width: 50px;
+  text-align: center;
+}
+.edit-button{
+  width: 150px;
+  float: right;
+  margin-right: 20px;
+}
+@media screen and (min-width:481px){
+
+  #Product h2{
+    text-align: left;
+  }
+  .content-left{
+    width:60%;
+    float: left;
+    margin-left:3%;
+  }
+  .content-left img{
+    display: block;
+  }
+  .content-right{
+    width:33%;
+    float: left;
+    margin-left:4%;
+  }
+  .cart-button{
+    text-align: right;
+  }
+  .cart{
+    margin-left:3%;
+  }
+  .price{
+    text-align: left;
+  }
+}
+@media screen and (min-width:769px){
+
+}
