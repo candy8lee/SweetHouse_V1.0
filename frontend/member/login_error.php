@@ -1,3 +1,7 @@
+<?php
+	session_start();
+	unset($_SESSION['account']);
+ ?>
 <!doctype html>
 <!-- Website ../template by freewebsite../templates.com -->
 <html>
@@ -22,9 +26,8 @@
 			<div class="footer">
 				<div id="MemberForm">
 					<h2>登入錯誤</h2>
-					<p>
-						請確認您的帳號密碼是否有誤。
-					</p>
+					<p>請確認您的帳號密碼是否有誤。</p>
+					<p><a href="member_login.php">重新登入</a></p>
 				</div>
 			</div>
 		</div>

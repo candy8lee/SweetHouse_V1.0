@@ -7,6 +7,10 @@ $category = $sth->fetchALL(PDO::FETCH_ASSOC);
 
 $sth = $db->query("SELECT * FROM product WHERE productID=".$_GET['productID']." AND categoryID =".$_GET['cateID']);
 $product = $sth->fetch(PDO::FETCH_ASSOC);
+
+//麵包屑裡的分類名稱-連結
+$sth = $db->query("SELECT * FROM product_category WHERE categoryID=".$_GET['cateID']);
+$category_name = $sth->fetch(PDO::FETCH_ASSOC);
  ?>
 <!doctype html>
 <!-- Website template by freewebsitetemplates.com -->
@@ -17,6 +21,24 @@ $product = $sth->fetch(PDO::FETCH_ASSOC);
 	<title>product - Cake House</title>
 	<?php require_once("template/files.php"); ?>
 	<link rel="stylesheet" href="../assets/css/cart.css">
+  <script src="../assets/js/jquery.js"></script>
+  <script type="text/javascript">
+      $(function(){
+        $('.quantity-button').click(function(){
+          //點擊"-"minus 就減1、"+"plus就加1
+          var quantity = 1;
+          quantity = $('input[name="Quantity"]').val();
+          if($(this).find('i').hasClass('fa-plus')){
+            quantity++;
+            console.log("加數量="+quantity);
+          }else{
+            quantity--;
+            console.log("減數量="+quantity);
+          }
+          $('input[name="Quantity"]').val(quantity);
+          });
+      });
+  </script>
 </head>
 <body>
 	<div id="page">
@@ -30,7 +52,8 @@ $product = $sth->fetch(PDO::FETCH_ASSOC);
 			<div class="wrapper">
 				<ol class="breadcrumb">
 				  <li><a href="../index.php"><i class="fa fa-home" aria-hidden="true"></i></a></li>
-				  <li><a href="#">蛋糕</a></li>
+				  <li class="active"><a href="product_no_category.php">全部商品</a></li>
+          <li class="active"><a href="product_category.php?cateID=<?php echo $category_name['categoryID']; ?>"><?php echo $category_name['category']; ?></a></li>
 				  <li class="active"><?php echo $product['name']; ?></li>
 				</ol>
 			<ul class="Category">
@@ -49,7 +72,7 @@ $product = $sth->fetch(PDO::FETCH_ASSOC);
 						<form class="" action="add_cart.php" method="post">
 							<table id="ProductTable">
 								<tr>
-									<td width="20%">價格：</td>
+									<td width="30%">價格：</td>
 									<td class="price"><?php echo $product['price']; ?></td>
 								</tr>
 								<tr>
@@ -63,7 +86,10 @@ $product = $sth->fetch(PDO::FETCH_ASSOC);
 											<i class="fa fa-plus" aria-hidden="true"></i>
 										</div>
 									</td>
-								</tr>
+                </tr>
+                <tr>
+                  <td>保存期限：</td>
+                  <td class="remain"><?php echo $product['remain']; ?></td>
 								<tr>
 									<td colspan="2"><input type="submit" class="cart" value="加入購物車"></td>
 								</tr>

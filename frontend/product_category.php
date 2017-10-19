@@ -4,9 +4,12 @@ $sql = "SELECT * FROM product_category";
 $sth = $db->query($sql);
 $category = $sth->fetchALL(PDO::FETCH_ASSOC);
 
-
 $sth = $db->query("SELECT * FROM product WHERE categoryID=".$_GET['cateID']." ORDER BY createdDate DESC");
 $products = $sth->fetchALL(PDO::FETCH_ASSOC);
+
+//麵包屑裡的分類名稱-連結
+$sth = $db->query("SELECT * FROM product_category WHERE categoryID=".$_GET['cateID']);
+$category_name = $sth->fetch(PDO::FETCH_ASSOC);
  ?>
 <!doctype html>
 <!-- Website template by freewebsitetemplates.com -->
@@ -29,7 +32,8 @@ $products = $sth->fetchALL(PDO::FETCH_ASSOC);
 			<div class="wrapper">
 				<ol class="breadcrumb">
 				  <li><a href="../index.php"><i class="fa fa-home" aria-hidden="true"></i></a></li>
-				  <li class="active"><a href="product_no_category.php">蛋糕</a></li>
+				  <li class="active"><a href="product_no_category.php">全部商品</a></li>
+          <li class="active"><a href="product_category.php?cateID=<?php echo $category_name['categoryID']; ?>"><?php echo $category_name['category']; ?></a></li>
 				</ol>
 				<ul class="Category">
 					<li><a href="product_no_category.php">全部商品</a></li>
@@ -41,7 +45,7 @@ $products = $sth->fetchALL(PDO::FETCH_ASSOC);
 
 					<?php foreach($products as $row){ ?>
 					<li>
-						<a href="product_content.php"><img src="../uploads/products/<?php echo $row['picture']; ?>" width="200" height="150" alt=""></a>
+						<a href="product_content.php?cateID=<?php echo $row['categoryID'];?>&&productID=<?php echo $row['productID']; ?>"><img src="../uploads/products/<?php echo $row['picture']; ?>" width="200" height="150" alt=""></a>
 						<a href="product_content.php?cateID=<?php echo $row['categoryID'];?>&&productID=<?php echo $row['productID']; ?>"><h2><?php echo $row['name']; ?></h2></a>
 					</li>
 				<?php } ?>

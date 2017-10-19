@@ -1,11 +1,11 @@
 <div id="tool-bar">
   <div class="container">
   <div class="tool">
-    <a href="member/member_apply.php">加入會員</a> 。
+    <a href="member_apply.php">加入會員</a> 。
     <?php if(isset($_SESSION['Account'])){ ?>
-    <a href="member/member_edit.php">會員專區</a> 。 <a href="logout.php">登出</a>
+    <a href="member_edit.php">會員專區</a> 。 <a href="logout.php">登出</a>
     <?php }else{ ?>
-    <a href="member/member_login.php">會員登入</a> 。
+    <a href="member_login.php">會員登入</a> 。
     <?php } ?>
     <a href="#"><i class="fa fa-shopping-cart fa-lg" aria-hidden="true"></i></a>
   </div>

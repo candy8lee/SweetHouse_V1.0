@@ -1,4 +1,20 @@
+<?php
+require_once('../../connection/database.php');
+if(isset($_POST['MM_insert']) && $_POST['MM_insert'] == 'INSERT'){
+	$sql= "INSERT INTO member( account, password, phone, createdDate, email)
+                    VALUES ( :account, :password, :phone, :createdDate, :email)";
+  $sth = $db ->prepare($sql);
+  $sth ->bindParam(":account", $_POST['account'], PDO::PARAM_STR);
+  $sth ->bindParam(":password", $_POST['password'], PDO::PARAM_STR);
+  $sth ->bindParam(":phone", $_POST['phone'], PDO::PARAM_STR);
+	$sth ->bindParam(":createdDate", $_POST['createdDate'], PDO::PARAM_STR);
+  $sth ->bindParam(":email", $_POST['email'], PDO::PARAM_STR);
+  $sth -> execute();
 
+  header('Location: apply_success.php');
+}
+
+ ?>
 <!doctype html>
 <!-- Website ../template by freewebsite../templates.com -->
 <html>
@@ -25,22 +41,31 @@
 					<h1>加入會員</h1>
 					<div class="row">
 	          <div class="col-md-12">
-					<form action="apply_success.php" method="post" data-toggle="validator">
+					<form action="member_apply.php" method="post" data-toggle="validator">
 						<div class="form-group">
 							<div class="col-sm-2">
-								<label for="Account" class="control-label">帳號</label>
+								<label for="email" class="control-label">Email</label>
 							</div>
 							<div class="col-sm-10">
-								<input type="email" class="form-control" id="Account" name="Account"  style="margin-bottom:10px;" data-error="請輸入E-mail做為帳號" required>
+								<input type="email" class="form-control" id="email" name="email"  style="margin-bottom:10px;" data-error="請輸入E-mail" required>
 								<div class="help-block with-errors"></div>
 							</div>
 						</div>
 						<div class="form-group">
 							<div class="col-sm-2">
-								<label for="Password" class="control-label">密碼</label>
+								<label for="account" class="control-label">帳號</label>
 							</div>
 							<div class="col-sm-10">
-								<input type="password" class="form-control" id="Password" name="Password" data-minlength="6" required data-error="請輸入至少6個英文數字做為密碼">
+								<input type="text" class="form-control" id="account" name="account"  style="margin-bottom:10px;" data-error="請輸入帳號" required>
+								<div class="help-block with-errors"></div>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-sm-2">
+								<label for="password" class="control-label">密碼</label>
+							</div>
+							<div class="col-sm-10">
+								<input type="password" class="form-control" id="password" name="password" pattern="^(?=^.{8,}$)((?=.*[A-Za-z0-9])(?=.*[A-Z])(?=.*[a-z]))^.*$" data-minlength="6" required data-error="密碼長度必須有八碼，並且包含至少一個小寫字母與一個大寫字母和一個數字">
 								<div class="help-block with-errors"></div>
 							</div>
 						</div>
@@ -49,16 +74,16 @@
 								<label for="ConfirmPas" class="control-label">確認密碼</label>
 							</div>
 							<div class="col-sm-10">
-								<input type="password" class="form-control" id="ConfirmPas" name="ConfirmPas" data-match="#Password" data-match-error="密碼不符，請重新輸入">
+								<input type="password" class="form-control" id="ConfirmPas" name="ConfirmPas" data-match="#password" data-match-error="密碼不符，請重新輸入">
 								<div class="help-block with-errors"></div>
 							</div>
 						</div>
 						<div class="form-group">
 							<div class="col-sm-2">
-								<label for="Phone" class="control-label">聯絡電話</label>
+								<label for="phone" class="control-label">聯絡電話</label>
 							</div>
 							<div class="col-sm-10">
-								<input type="text" class="form-control" id="Phone" name="Phone" data-error="請輸入聯絡電話" required>
+								<input type="text" class="form-control" id="phone" name="phone" pattern="^[0-9]*$" data-error="請輸入電話號碼" required>
 								<div class="help-block with-errors"></div>
 							</div>
 						</div>
@@ -70,7 +95,8 @@
 						</div>
 						<div class="form-group">
 							<div class="col-sm-12 text-center">
-								<input type="hidden" class="form-control" id="CreatedDate" name="CreatedDate" value="<?php echo date("Y-m-d H:i:s"); ?>">
+								<input type="hidden" name="MM_insert" value="INSERT">
+								<input type="hidden" class="form-control" id="createdDate" name="createdDate" value="<?php echo date("Y-m-d H:i:s"); ?>">
 								<button type="submit" class="btn btn-default" style="width:200px;">確認送出</button>
 							</div>
 						</div>

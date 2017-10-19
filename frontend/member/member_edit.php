@@ -1,4 +1,43 @@
+<?php
+session_start();
+require_once('../../connection/database.php');
+if(isset($_POST['MM_update']) && $_POST['MM_update'] == 'UPDATE'){
 
+	//上傳頭像
+	if(isset($_FILES['picture']['name']) && $_FILES['picture']['name'] != null){
+    if (!file_exists('../../uploads/member_pic')) mkdir('../../uploads/member_pic', 0755, true);
+    $fileTYPE = strrchr($_FILES['picture']['name'],".");//查找字串，遇到"."停止->分割副檔名
+    //$filename = rand().$fileTYPE;//亂數連接副檔名->rename
+    $filename = md5($_FILES['picture']['name']).$fileTYPE;
+    move_uploaded_file($_FILES['picture']['tmp_name'],"../../uploads/member_pic/".$filename);   // 搬移上傳檔案
+  }else{
+    $filename = $_POST['picture1'];
+  }
+
+
+  $sql= "UPDATE member SET
+                        picture= :picture,
+                        name= :name,
+                        phone= :phone,
+                        email= :email,
+                        address= :address,
+                        updatedDate= :updatedDate
+                        WHERE memberID= :memberID";
+  $sth = $db ->prepare($sql);
+  $sth ->bindParam(":picture", $filename, PDO::PARAM_STR);
+  $sth ->bindParam(":name", $_POST['name'], PDO::PARAM_STR);
+  $sth ->bindParam(":phone", $_POST['phone'], PDO::PARAM_STR);
+  $sth ->bindParam(":email", $_POST['email'], PDO::PARAM_STR);
+  $sth ->bindParam(":address", $_POST['address'], PDO::PARAM_STR);
+  $sth ->bindParam(":updatedDate", $_POST['updatedDate'], PDO::PARAM_STR);
+  $sth ->bindParam(":memberID", $_POST['memberID'], PDO::PARAM_INT);
+  $sth -> execute();
+
+  header('Location: member_edit.php');
+}
+$sth = $db->query("SELECT * FROM member WHERE account = $_SESSION['account']");
+$member = $sth->fetch(PDO::FETCH_ASSOC);
+ ?>
 <!doctype html>
 <!-- Website ../template by freewebsite../templates.com -->
 <html>
@@ -29,42 +68,40 @@
 				<div id="MemberForm">
 					<h1>會員資料修改</h1>
 					<form action="member_edit.php" method="post">
-						<input type="hidden" name="MM_update" value="EditForm">
-
+						<input type="hidden" name="MM_update" value="UPDATE">
+						<input type="hidden" name="updatedDate" value="<?php echo date("Y-m-d H:i:s"); ?>">
+						<input type="hidden" name="memberID" value="<?php echo $member['memberID']; ?>">
 						<table>
 								<tr>
+									<input type="file" class="form-control" id="picture" name="picture">
+									<input type="hidden" name="picture1" value="<?php echo $member['picture']; ?>"><!--預防沒選圖片送出空資料-->
+								</tr>
+								<tr>
+									<th>頭像：</th>
+									<td><img src="../../uploads/member_pic/<?php echo $member['picture']; ?>" alt=""></td>
+								</tr>
+								<tr>
 									<th>帳號：</th>
-									<td>andy@gmail.com</td>
+									<td><?php echo $member['account']; ?></td>
 								</tr>
 								<tr>
 									<th>姓名：</th>
 									<td>
-										<input type="text" name="Name" value="Andy">
+										<input type="text" name="name" value="<?php echo $member['name']; ?>">
 										<div class="help-block with-errors"></div>
 									</td>
 								</tr>
 								<tr>
-									<th>性別：</th>
-									<td>
-										<input type="radio" name="Gender" value="0" checked="true"> 男
-										<input type="radio" name="Gender" value="1" > 女
-									</td>
-								</tr>
-								<tr>
-									<th>生日：</th>
-									<td><input type="text" name="Birthday" value="<?php echo $member['Birthday']; ?>"></td>
-								</tr>
-								<tr>
 									<th>聯絡電話：</th>
-									<td><input type="text" name="Phone"></td>
+									<td><input type="text" name="phone" value="<?php echo $member['phone']; ?>"></td>
 								</tr>
 								<tr>
-									<th>行動電話：</th>
-									<td><input type="text" name="MobilePhone"></td>
+									<th>聯絡Email：</th>
+									<td><input type="text" name="email" value="<?php echo $member['email']; ?>"></td>
 								</tr>
 								<tr>
 									<th>地址：</th>
-									<td><input type="text" name="Address"></td>
+									<td><input type="text" name="address" value="<?php echo $member['address']; ?>"></td>
 								</tr>
 								<tr>
 									<td colspan="2" align="center"><input type="submit" value="更新資料" id="submit" ></td>
