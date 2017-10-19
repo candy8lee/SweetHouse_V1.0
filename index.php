@@ -45,7 +45,7 @@
 		        <a href="frontend/product_no_category.php">產品介紹</a>
 		      </li>
 		      <li class="menu">
-		        <a href="frontend/blog.php">最新消息</a>
+		        <a href="frontend/news_list.php">最新消息</a>
 		      </li>
 		      <li>
 		        <a href="frontend/contact.php">聯絡我們</a>

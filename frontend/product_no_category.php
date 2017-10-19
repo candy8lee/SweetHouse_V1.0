@@ -26,7 +26,6 @@
 				<ul class="Category">
 
 					<li><a href="product_category.php">產品分類</a></li>
-					<?php } ?>
 				</ul>
 				<ul id="Products">
 

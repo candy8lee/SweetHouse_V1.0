@@ -34,7 +34,7 @@
         <a href="product_no_category.php">產品介紹</a>
       </li>
       <li class="menu">
-        <a href="blog.php">最新消息</a>
+        <a href="news_list.php">最新消息</a>
       </li>
       <li>
         <a href="contact.php">聯絡我們</a>
