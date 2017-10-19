@@ -5,11 +5,11 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Cake House-會員申請</title>
-	<?php require_once("../../template/files2.php"); ?>
+	<?php require_once("../template/files2.php"); ?>
 </head>
 <body>
 	<div id="page">
-		<?php require_once("../../template/header.php"); ?>
+		<?php require_once("../template/header2.php"); ?>
 		<div id="body" class="contact">
 			<div class="header">
 				<div>
@@ -28,7 +28,7 @@
 				</div>
 			</div>
 		</div>
-		<?php require_once("../../template/footer.php"); ?>
+		<?php require_once("../template/footer.php"); ?>
 	</div>
 </body>
 </html>

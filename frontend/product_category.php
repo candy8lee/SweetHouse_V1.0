@@ -1,4 +1,13 @@
+<?php
+require_once("../connection/database.php");
+$sql = "SELECT * FROM product_category";
+$sth = $db->query($sql);
+$category = $sth->fetchALL(PDO::FETCH_ASSOC);
 
+
+$sth = $db->query("SELECT * FROM product WHERE categoryID=".$_GET['cateID']." ORDER BY createdDate DESC");
+$products = $sth->fetchALL(PDO::FETCH_ASSOC);
+ ?>
 <!doctype html>
 <!-- Website template by freewebsitetemplates.com -->
 <html>
@@ -20,19 +29,22 @@
 			<div class="wrapper">
 				<ol class="breadcrumb">
 				  <li><a href="../index.php"><i class="fa fa-home" aria-hidden="true"></i></a></li>
-				  <li class="active"><a href="#">蛋糕</a></li>
+				  <li class="active"><a href="product_no_category.php">蛋糕</a></li>
 				</ol>
 				<ul class="Category">
-
-					<li><a href="#"></a></li>
-
+					<li><a href="product_no_category.php">全部商品</a></li>
+					<?php foreach($category as $row){ ?>
+					<li><a href="product_category.php?cateID=<?php echo $row['categoryID'];?>"><?php echo $row['category']; ?></a></li>
+					<?php } ?>
 				</ul>
 				<ul id="Products">
 
+					<?php foreach($products as $row){ ?>
 					<li>
-						<a href="#"><img src="../uploads/product/cheese.jpg" width="200" height="150" alt=""></a>
-						<a href="#"><h2>起士蛋糕</h2></a>
+						<a href="product_content.php"><img src="../uploads/products/<?php echo $row['picture']; ?>" width="200" height="150" alt=""></a>
+						<a href="product_content.php?cateID=<?php echo $row['categoryID'];?>&&productID=<?php echo $row['productID']; ?>"><h2><?php echo $row['name']; ?></h2></a>
 					</li>
+				<?php } ?>
 
 				</ul>
 			</div>

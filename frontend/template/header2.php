@@ -17,27 +17,27 @@
 
     <ul id="navigation">
       <li class="selected">
-        <a href="../index.php">首頁</a>
+        <a href="../../index.php">首頁</a>
       </li>
       <li class="menu">
-        <a href="about.php?PageID=1">關於我們</a>
+        <a href="../about.php?pageID=1">關於我們</a>
         <ul class="primary">
           <li>
-            <a href="about.php?PageID=2">購物須知</a>
+            <a href="../about.php?pageID=2">購物須知</a>
           </li>
           <li>
-            <a href="about.php?PageID=3">會員條款</a>
+            <a href="../about.php?pageID=3">會員條款</a>
           </li>
         </ul>
       </li>
       <li>
-        <a href="product_no_category.php">產品介紹</a>
+        <a href="../product_no_category.php">產品介紹</a>
       </li>
       <li class="menu">
-        <a href="news_list.php">最新消息</a>
+        <a href="../news_list.php">最新消息</a>
       </li>
       <li>
-        <a href="contact.php">聯絡我們</a>
+        <a href="../contact.php">聯絡我們</a>
       </li>
     </ul>
     <div class="clearboth">	</div>

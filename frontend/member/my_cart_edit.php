@@ -6,12 +6,12 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Cake House-我的購物車</title>
-	<?php require_once("../../template/files2.php"); ?>
+	<?php require_once("../template/files2.php"); ?>
 	<link rel="stylesheet" href="../assets/css/cart.css">
 </head>
 <body>
 	<div id="page">
-		<?php require_once("../../template/header.php"); ?>
+		<?php require_once("../template/header2.php"); ?>
 		<div id="body" class="contact">
 			<div class="header">
 				<div>
@@ -85,7 +85,7 @@
 
 			</div>
 		</div>
-		<?php require_once("../../template/footer.php"); ?>
+		<?php require_once("../template/footer.php"); ?>
 	</div>
 </body>
 </html>

@@ -1,4 +1,13 @@
+<?php
+require_once("../connection/database.php");
+$sql = "SELECT * FROM product_category";
+$sth = $db->query($sql);
+$category = $sth->fetchALL(PDO::FETCH_ASSOC);
 
+
+$sth = $db->query("SELECT * FROM product WHERE productID=".$_GET['productID']." AND categoryID =".$_GET['cateID']);
+$product = $sth->fetch(PDO::FETCH_ASSOC);
+ ?>
 <!doctype html>
 <!-- Website template by freewebsitetemplates.com -->
 <html>
@@ -22,24 +31,26 @@
 				<ol class="breadcrumb">
 				  <li><a href="../index.php"><i class="fa fa-home" aria-hidden="true"></i></a></li>
 				  <li><a href="#">蛋糕</a></li>
-				  <li class="active"><?php echo $product['Name']; ?></li>
+				  <li class="active"><?php echo $product['name']; ?></li>
 				</ol>
+			<ul class="Category">
+				<li><a href="product_no_category.php">全部商品</a></li>
+				<?php foreach($category as $row){ ?>
+				<li><a href="product_category.php?cateID=<?php echo $row['categoryID'];?>"><?php echo $row['category']; ?></a></li>
+				<?php } ?>
+			</ul>
 				<div id="Product">
 
 					<div class="content-left">
-						<img src="../uploads/product/123.jpg" alt="">
+						<img src="../uploads/products/<?php echo $product['picture']; ?>" alt="">
 					</div>
 					<div class="content-right">
-						<h2><?php echo $product['Name']; ?></h2>
+						<h2><?php echo $product['name']; ?></h2>
 						<form class="" action="add_cart.php" method="post">
 							<table id="ProductTable">
 								<tr>
 									<td width="20%">價格：</td>
-									<td class="price">
-
-
-										NT$150
-									</td>
+									<td class="price"><?php echo $product['price']; ?></td>
 								</tr>
 								<tr>
 									<td>數量：</td>
@@ -61,7 +72,8 @@
 					</div>
 					<div class="clearboth"></div>
 					<hr>
-					<p>商品說明</p>
+					<h3>商品詳情</h3>
+					<p><?php echo $product['decription']; ?></p>
 				</div>
 			</div>
 		</div>
