@@ -18,7 +18,7 @@
 	<div id="page">
 		<div id="tool-bar">
 		  <div class="container">
-		  <div class="tool"><a href="#">加入會員</a> 。 <a href="#">會員登入</a> 。 <a href="#"><i class="fa fa-shopping-cart fa-lg" aria-hidden="true"></i></a>
+		  <div class="tool"><a href="#">加入會員</a> 。 <a href="frontend/member/member_login.php">會員登入</a> 。 <a href="#"><i class="fa fa-shopping-cart fa-lg" aria-hidden="true"></i></a>
 		  </div>
 		</div>
 		</div>
@@ -77,19 +77,19 @@
 				<div>
 					<ul>
 						<li>
-							<a href="product.php" class="product"></a>
+							<a href="frontend/product_no_category.php" class="product"></a>
 							<h1>PRODUCTS</h1>
 						</li>
 						<li>
-							<a href="about.php" class="about"></a>
+							<a href="frontend/about.php" class="about"></a>
 							<h1>OUR STORY</h1>
 						</li>
 						<li>
-							<a href="product.php" class="flavor"></a>
+							<a href="frontend/product_no_category.php" class="flavor"></a>
 							<h1>FLAVORS</h1>
 						</li>
 						<li>
-							<a href="contact.php" class="contact"></a>
+							<a href="frontend/contact.php" class="contact"></a>
 							<h1>OUR LOCATION</h1>
 						</li>
 					</ul>

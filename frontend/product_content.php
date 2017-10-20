@@ -39,6 +39,13 @@ $category_name = $sth->fetch(PDO::FETCH_ASSOC);
           });
       });
   </script>
+  <?php
+    if(isset($_GET['Existed']) && $_GET['Existed'] != null){
+      if($_GET['Existed'] == "true") echo "<script>alert('此商品已存在購物車，請至「我的購物車」編輯數量')</script>";
+      else echo "<script>alert('成功加入購物車！')</script>";
+    }
+
+   ?>
 </head>
 <body>
 	<div id="page">
@@ -91,6 +98,11 @@ $category_name = $sth->fetch(PDO::FETCH_ASSOC);
                   <td>保存期限：</td>
                   <td class="remain"><?php echo $product['remain']; ?></td>
 								<tr>
+                  <input type="hidden" name="Name" value="<?php echo $product['name']; ?>">
+                  <input type="hidden" name="Price" value="<?php echo $product['price']; ?>">
+                  <input type="hidden" name="Picture" value="<?php echo $product['picture']; ?>">
+                  <input type="hidden" name="ProductID" value="<?php echo $product['productID']; ?>">
+                  <input type="hidden" name="CateID" value="<?php echo $_GET['cateID'];?>">
 									<td colspan="2"><input type="submit" class="cart" value="加入購物車"></td>
 								</tr>
 							</table>

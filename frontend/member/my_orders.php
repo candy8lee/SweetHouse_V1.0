@@ -1,4 +1,4 @@
-
+<?php session_start(); ?>
 <!doctype html>
 <!-- Website ../template by freewebsite../templates.com -->
 <html>

@@ -1,4 +1,7 @@
-
+<?php
+session_start();
+$id = $_GET['CartID'];
+ ?>
 <!doctype html>
 <!-- Website ../template by freewebsite../templates.com -->
 <html>
@@ -49,19 +52,16 @@
 
 	                <tr data-toggle="collapse" data-target="#demo1" class="accordion-toggle">
 										<td data-title="商品圖片">
-												<a href=""><img src="../uploads/product/<?php echo $_SESSION['Cart'][$i]['Picture']; ?>" alt="" width="200" height="150"></a>
+												<a href=""><img src="../../uploads/products/<?php echo $_SESSION['Cart'][$id]['Picture']; ?>" alt="" width="200" height="150"></a>
 										</td>
 										<td class="cart_description" data-title="商品名稱">
-												<h4><a href="">起司蛋糕</a></h4>
+												<h4><a href=""><?php echo $_SESSION['Cart'][$id]['Name']; ?></a></h4>
 										</td>
-	                  <td data-title="單價">$NT 120</td>
+	                  <td data-title="單價">$NT <?php echo $_SESSION['Cart'][$id]['Price']; ?></td>
 	                  <td class="quantity" data-title="數量">
-
-												<input type="text" name="Quantity" >
-
-
+												<input type="text" name="Quantity" value="<?php echo $_SESSION['Cart'][$id]['Quantity']; ?>">
 										</td>
-										<td data-title="小計">$NT 120</td>
+										<td data-title="小計">$NT <?php echo $_SESSION['Cart'][$id]['Price'] * $_SESSION['Cart'][$id]['Quantity'];?></td>
 	                  <td data-title="更新">
 											<button type="submit" class="btn btn-default update" style=""><i class="fa fa-upload"></i></button>
 										</td>
@@ -69,15 +69,10 @@
 											<button class="btn btn-default" href="#" ><i class="fa fa-times"></i></button>
 										</td>
 	                </tr>
-									<?php } }?>
-
-
-
-
               </tbody>
             </table>
 						<div class="edit-button">
-
+								<input type="hidden" name="CartID" value="<?php echo $_GET['CartID']; ?>">
 								<button type="submit" class="cart">確定修改</button>
 						</div>
 						</form>

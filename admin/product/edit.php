@@ -72,7 +72,7 @@ $product = $sth->fetch(PDO::FETCH_ASSOC);
               </div>
               <div class="col-sm-10">
                 <img src="../../uploads/products/<?php echo $product['picture']; ?>"><?php echo $product['picture']; ?>
-                <input type="file" class="form-control" id="picture" name="picture" data-error="請上傳圖片">
+                <input type="file" class="form-control" id="picture" name="picture">
                 <input type="hidden" name="picture1" value="<?php echo $product['picture']; ?>">
                 <div class="help-block with-errors col-md-12" style="color:blue;"></div>
               </div>

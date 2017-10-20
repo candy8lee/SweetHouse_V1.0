@@ -1,6 +1,7 @@
 <?php
 session_start();
 require_once('../../connection/database.php');
+
 if(isset($_POST['MM_update']) && $_POST['MM_update'] == 'UPDATE'){
 
 	//上傳頭像
@@ -9,7 +10,7 @@ if(isset($_POST['MM_update']) && $_POST['MM_update'] == 'UPDATE'){
     $fileTYPE = strrchr($_FILES['picture']['name'],".");//查找字串，遇到"."停止->分割副檔名
     //$filename = rand().$fileTYPE;//亂數連接副檔名->rename
     $filename = md5($_FILES['picture']['name']).$fileTYPE;
-    move_uploaded_file($_FILES['picture']['tmp_name'],"../../uploads/member_pic/".$filename);   // 搬移上傳檔案
+    move_uploaded_file($_FILES['picture']['tmp_name'] , "../../uploads/member_pic/".$filename);   // 搬移上傳檔案
   }else{
     $filename = $_POST['picture1'];
   }
@@ -19,6 +20,7 @@ if(isset($_POST['MM_update']) && $_POST['MM_update'] == 'UPDATE'){
                         picture= :picture,
                         name= :name,
                         phone= :phone,
+												brithday= :brithday,
                         email= :email,
                         address= :address,
                         updatedDate= :updatedDate
@@ -27,6 +29,7 @@ if(isset($_POST['MM_update']) && $_POST['MM_update'] == 'UPDATE'){
   $sth ->bindParam(":picture", $filename, PDO::PARAM_STR);
   $sth ->bindParam(":name", $_POST['name'], PDO::PARAM_STR);
   $sth ->bindParam(":phone", $_POST['phone'], PDO::PARAM_STR);
+	$sth ->bindParam(":brithday", $_POST['brithday'], PDO::PARAM_STR);
   $sth ->bindParam(":email", $_POST['email'], PDO::PARAM_STR);
   $sth ->bindParam(":address", $_POST['address'], PDO::PARAM_STR);
   $sth ->bindParam(":updatedDate", $_POST['updatedDate'], PDO::PARAM_STR);
@@ -35,7 +38,7 @@ if(isset($_POST['MM_update']) && $_POST['MM_update'] == 'UPDATE'){
 
   header('Location: member_edit.php');
 }
-$sth = $db->query("SELECT * FROM member WHERE account = $_SESSION['account']");
+$sth = $db->query("SELECT * FROM member WHERE account ='".$_SESSION['account']."'");
 $member = $sth->fetch(PDO::FETCH_ASSOC);
  ?>
 <!doctype html>
@@ -46,6 +49,21 @@ $member = $sth->fetch(PDO::FETCH_ASSOC);
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Cake House-會員資料修改</title>
 	<?php require_once("../template/files2.php"); ?>
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+	<link rel="stylesheet" href="/resources/demos/style.css">
+  <script src="../../assets/js/jquery.js"></script>
+  <script src="../../assets/js/jquery-ui/jquery-ui.js"></script>
+  <script>
+	  $(function() {
+      $("#brithday").datepicker({
+        dateFormat: "yy-mm-dd",
+        changeMonth: true,
+        changeYear: true,
+        minDate: "-100y",
+				maxDate : "-10y"
+      });
+    });
+  </script>
 </head>
 <body>
 	<div id="page">
@@ -73,12 +91,12 @@ $member = $sth->fetch(PDO::FETCH_ASSOC);
 						<input type="hidden" name="memberID" value="<?php echo $member['memberID']; ?>">
 						<table>
 								<tr>
-									<input type="file" class="form-control" id="picture" name="picture">
-									<input type="hidden" name="picture1" value="<?php echo $member['picture']; ?>"><!--預防沒選圖片送出空資料-->
-								</tr>
-								<tr>
 									<th>頭像：</th>
-									<td><img src="../../uploads/member_pic/<?php echo $member['picture']; ?>" alt=""></td>
+									<td>
+										<img src="../../uploads/member_pic/<?php echo $member['picture']; ?>" alt="">
+										<input type="file" class="form-control" id="picture" name="picture">
+										<input type="hidden" name="picture1" value="<?php echo $member['picture']; ?>"><!--預防沒選圖片送出空資料-->
+									</td>
 								</tr>
 								<tr>
 									<th>帳號：</th>
@@ -94,6 +112,10 @@ $member = $sth->fetch(PDO::FETCH_ASSOC);
 								<tr>
 									<th>聯絡電話：</th>
 									<td><input type="text" name="phone" value="<?php echo $member['phone']; ?>"></td>
+								</tr>
+								<tr>
+									<th>生日：</th>
+									<td><input type="text"id="brithday" name="brithday" value="<?php echo $member['brithday']; ?>"></td>
 								</tr>
 								<tr>
 									<th>聯絡Email：</th>
