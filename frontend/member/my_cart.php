@@ -1,4 +1,5 @@
-<?php session_start();
+<?php
+session_start();
 if(isset($_POST['MM_update']) && $_POST['MM_update'] == "QuantityEdit"){
 	$id= $_POST['CartID'];
 	if($_POST['Quantity'] <= 0) $_POST['Quantity'] = 1;
@@ -52,6 +53,11 @@ if(isset($_POST['MM_update']) && $_POST['MM_update'] == "QuantityEdit"){
 
 								<?php if(isset($_SESSION['Cart']) && $_SESSION['Cart'] != null){?>
 									<?php $totalprice = 0; ?>
+									<tr>
+										<td colspan="7" >
+												<a href="cart_clear_ALL.php" class="edit-button cart" onclick="if(!confirm('是否清空購物車？')){return false;};">清空購物車</a>
+										</td>
+									</tr>
 									<?php for( $i=0; $i < count($_SESSION['Cart']); $i++){ ?>
 	                <tr data-toggle="collapse" data-target="#demo1" class="accordion-toggle">
 										<td data-title="商品圖片">
