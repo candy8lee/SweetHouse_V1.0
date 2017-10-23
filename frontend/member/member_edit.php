@@ -20,6 +20,7 @@ if(isset($_POST['MM_update']) && $_POST['MM_update'] == 'UPDATE'){
                         picture= :picture,
                         name= :name,
                         phone= :phone,
+												mobilephone= :mobilephone,
 												brithday= :brithday,
                         email= :email,
                         address= :address,
@@ -28,7 +29,8 @@ if(isset($_POST['MM_update']) && $_POST['MM_update'] == 'UPDATE'){
   $sth = $db ->prepare($sql);
   $sth ->bindParam(":picture", $filename, PDO::PARAM_STR);
   $sth ->bindParam(":name", $_POST['name'], PDO::PARAM_STR);
-  $sth ->bindParam(":phone", $_POST['phone'], PDO::PARAM_STR);
+	$sth ->bindParam(":phone", $_POST['phone'], PDO::PARAM_STR);
+  $sth ->bindParam(":mobilephone", $_POST['mobilephone'], PDO::PARAM_STR);
 	$sth ->bindParam(":brithday", $_POST['brithday'], PDO::PARAM_STR);
   $sth ->bindParam(":email", $_POST['email'], PDO::PARAM_STR);
   $sth ->bindParam(":address", $_POST['address'], PDO::PARAM_STR);
@@ -112,6 +114,10 @@ $member = $sth->fetch(PDO::FETCH_ASSOC);
 								<tr>
 									<th>聯絡電話：</th>
 									<td><input type="text" name="phone" value="<?php echo $member['phone']; ?>"></td>
+								</tr>
+								<tr>
+									<th>行動電話：</th>
+									<td><input type="text" name="mobilephone" value="<?php echo $member['mobilephone']; ?>"></td>
 								</tr>
 								<tr>
 									<th>生日：</th>

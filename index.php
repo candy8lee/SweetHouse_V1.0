@@ -1,3 +1,6 @@
+<?php
+session_start();
+ ?>
 <!doctype html>
 <!-- Website template by freewebsitetemplates.com -->
 <html>
@@ -18,7 +21,14 @@
 	<div id="page">
 		<div id="tool-bar">
 		  <div class="container">
-		  <div class="tool"><a href="#">加入會員</a> 。 <a href="frontend/member/member_login.php">會員登入</a> 。 <a href="#"><i class="fa fa-shopping-cart fa-lg" aria-hidden="true"></i></a>
+		  <div class="tool">
+				<?php if(isset($_SESSION['account'])){ ?>
+		    <a href="frontend/member/member_edit.php">會員專區</a> 。 <a href="frontend/member/logout.php">登出</a>
+		    <?php }else{ ?>
+		    <a href="frontend/member/member_apply.php">加入會員</a> 。
+		    <a href="frontend/member/member_login.php">會員登入</a> 。
+		    <?php } ?>
+		    <a href="frontend/member/my_cart.php"><i class="fa fa-shopping-cart fa-lg" aria-hidden="true"></i></a>
 		  </div>
 		</div>
 		</div>

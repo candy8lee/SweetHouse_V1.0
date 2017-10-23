@@ -19,6 +19,7 @@ if($is_existed == "false"){
   $temp['Picture']   = $_POST['Picture'];
   $temp['Price']     = $_POST['Price'];
   $temp['Quantity']  = $_POST['Quantity'];
+  $temp['CateID']     = $_POST['CateID'];
 
   //temp->Session
   $_SESSION['Cart'][] = $temp;

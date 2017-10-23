@@ -3,7 +3,7 @@
   <div class="container">
   <div class="tool">
     <?php if(isset($_SESSION['account'])){ ?>
-    <a href="member/member_edit.php">會員專區</a> 。 <a href="logout.php">登出</a>
+    <a href="member/member_edit.php">會員專區</a> 。 <a href="member/logout.php">登出</a>
     <?php }else{ ?>
     <a href="member/member_apply.php">加入會員</a> 。
     <a href="member/member_login.php">會員登入</a> 。

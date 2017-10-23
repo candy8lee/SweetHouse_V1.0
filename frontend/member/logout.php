@@ -1,4 +1,8 @@
-
+<?php
+session_start();
+unset($_SESSION['account']);
+unset($_SESSION['memberID']);
+ ?>
 <!doctype html>
 <!-- Website ../template by freewebsite../templates.com -->
 <html>
