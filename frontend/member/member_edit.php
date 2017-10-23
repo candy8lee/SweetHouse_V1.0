@@ -85,7 +85,7 @@ $member = $sth->fetch(PDO::FETCH_ASSOC);
 				</ul>
 				<div id="MemberForm">
 					<h1>會員資料修改</h1>
-					<form action="member_edit.php" method="post">
+					<form action="member_edit.php" method="post" enctype="multipart/form-data">
 						<input type="hidden" name="MM_update" value="UPDATE">
 						<input type="hidden" name="updatedDate" value="<?php echo date("Y-m-d H:i:s"); ?>">
 						<input type="hidden" name="memberID" value="<?php echo $member['memberID']; ?>">
