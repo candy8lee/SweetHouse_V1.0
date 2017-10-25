@@ -1,5 +1,6 @@
 <?php
 session_start();
+if($_SESSION['account'] == null) header('Location: member_apply.php');
 require_once('../../connection/database.php');
 
 if(isset($_POST['MM_update']) && $_POST['MM_update'] == 'UPDATE'){

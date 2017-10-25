@@ -98,13 +98,15 @@ if(isset($_POST['MM_insert']) && $_POST['MM_insert'] == 'INSERT'){
 								<input type="hidden" name="MM_insert" value="INSERT">
 								<input type="hidden" class="form-control" id="createdDate" name="createdDate" value="<?php echo date("Y-m-d H:i:s"); ?>">
 								<button type="submit" class="btn btn-default" style="width:200px;">確認送出</button>
+
+								<div class="col-sm-12 text-center">已申請帳號請由此<a href="member_login.php">登入</a></div>
 							</div>
 						</div>
 					</form>
 					<hr>
-					<h1>社群登入</h1>
-					<form action="apply_success.php" style="width:50%">
-						<input class="facebook" type="submit" value="facebook 註冊" id="submit">
+					<h1>登入</h1>
+					<form action="apply_success.php" style="width:250px">
+						<input class="facebook" type="submit" value="facebook 註冊" id="submit" >
 					</form>
 					</div>
 				</div>

@@ -1,5 +1,6 @@
 <?php
 session_start();
+if($_SESSION['account'] == null) header('Location: member_apply.php');
 require_once("../../connection/database.php");
 $sth = $db->query("SELECT * FROM customer_order WHERE orderID=".$_GET['QI']);
 $orderNo = $sth->fetch(PDO::FETCH_ASSOC);//只取訂單編號

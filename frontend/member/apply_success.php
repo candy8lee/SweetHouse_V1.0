@@ -1,4 +1,7 @@
-
+<?php
+session_start();
+if($_SESSION['account'] == null) header('Location: member_apply.php');
+ ?>
 <!doctype html>
 <!-- Website ../template by freewebsite../templates.com -->
 <html>

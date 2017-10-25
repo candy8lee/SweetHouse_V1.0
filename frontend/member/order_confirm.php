@@ -1,5 +1,6 @@
 <?php
 session_start();
+if($_SESSION['account'] == null) header('Location: member_apply.php');
 require_once("../../connection/database.php");
 
 $sth = $db->query("SELECT * FROM member WHERE account='".$_SESSION['account']."'");
