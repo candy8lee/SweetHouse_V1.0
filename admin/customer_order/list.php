@@ -1,9 +1,9 @@
 <?php
 require_once("../template/login_check.php");
 require_once("../../connection/database.php");
-$limit = 2;//news item 筆數限制
+$limit = 25;//news item 筆數限制
 if (isset($_GET["page"])) { $page_num  = $_GET["page"]; } else { $page_num=1; };//判斷網址上有沒有頁碼、沒有就預設第一頁
-$start_from = ($page_num-1) * $limit;//news item 從第幾筆開始//ex:(第二頁-1)*limit->[5]開始數五個出來//[0]開始
+$start_from = ($page_num-1) * $limit;//news item 從第幾筆開始//ex:(第二頁-1)*limit->[25]開始數25個出來//[0]開始
 $sql = "SELECT * FROM customer_order WHERE status = ".$_GET['Status']." ORDER BY orderDate DESC LIMIT ".$start_from.",".$limit;// LIMIT num,num
 $sth = $db->query($sql);
 $all_orders = $sth->fetchALL(PDO::FETCH_ASSOC);
@@ -33,7 +33,7 @@ $totalRows = count($all_orders);
             <li class="breadcrumb-item">
               <a href="#">主控台</a>
             </li>
-            <li class="breadcrumb-item active">訂單管理-
+            <li class="breadcrumb-item active">訂單管理：
             <?php require_once('../template/status.php'); ?>
             </li>
           </ul>
@@ -60,7 +60,7 @@ $totalRows = count($all_orders);
                 <td><?php echo $row['address']; ?></td>
                 <td><?php echo $row['totalPrice']; ?></td>
                 <th><a href="edit.php?Status=<?php echo $_GET['Status'];?>&orderID=<?php echo $row['orderID']; ?>" class="btn btn-danger" role="button">進入</a></th>
-                <th><a href="delet.php?orderID=<?php echo $row['orderID']; ?>" class="btn btn-danger" role="button" onclick="if(!confirm('是否刪除此筆資料？')){return false;};">刪除</a></th>
+                <th><a href="../order_details/list.php?orderID=<?php echo $row['orderID']; ?>&page=<?php echo $page_num;?>" class="btn btn-danger" role="button">明細</a></th>
               </tr>
             <?php }?>
             </tbody>

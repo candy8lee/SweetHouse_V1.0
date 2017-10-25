@@ -77,11 +77,11 @@ $member = $sth->fetch(PDO::FETCH_ASSOC);
                   <label for="status" class="control-label">訂單狀態</label>
                 </div>
                 <div class="col-sm-10">
-                  <input type="radio" name="status" value="0" <?php if( $order['status'] == 0) echo "checked" ?>>待付款 / 新訂單
-                  <input type="radio" name="status" value="1" <?php if( $order['status'] == 1) echo "checked" ?>>已付款 / 待出貨
-                  <input type="radio" name="status" value="2" <?php if( $order['status'] == 2) echo "checked" ?>>已出貨 / 運送中
-                  <input type="radio" name="status" value="3" <?php if( $order['status'] == 3) echo "checked" ?>>已送達 / 完成訂單
-                  <input type="radio" name="status" value="99" <?php if( $order['status'] == 99) echo "checked" ?>>訂單取消
+                  <input type="radio" name="status" value="0" <?php if( $order['status'] == 0) echo "checked" ?>>待付款 - 新訂單。
+                  <input type="radio" name="status" value="1" <?php if( $order['status'] == 1) echo "checked" ?>>已付款 -> 待出貨。
+                  <input type="radio" name="status" value="2" <?php if( $order['status'] == 2) echo "checked" ?>>已出貨 -> 運送中。
+                  <input type="radio" name="status" value="3" <?php if( $order['status'] == 3) echo "checked" ?>>已送達 -> 完成訂單。 
+                  <input type="radio" name="status" value="99" <?php if( $order['status'] == 99) echo "checked" ?>>訂單取消。
               </div>
             </div>
             <div class="form-group">
@@ -98,7 +98,7 @@ $member = $sth->fetch(PDO::FETCH_ASSOC);
                 </div>
                 <div class="col-sm-10">
                     <input type="text" name="address" value="<?php echo $order['address']; ?>">
-              </div>
+                </div>
             </div>
             <div class="form-group">
               <div class="col-sm-10 col-sm-offset-2 text-right">

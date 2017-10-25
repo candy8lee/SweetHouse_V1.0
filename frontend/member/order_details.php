@@ -6,7 +6,6 @@ $sth = $db->query("SELECT * FROM customer_order WHERE orderID=".$_GET['QI']);
 $orderNo = $sth->fetch(PDO::FETCH_ASSOC);//只取訂單編號
 $sth = $db->query("SELECT * FROM order_details WHERE orderID=".$_GET['QI']);
 $order_details = $sth->fetchALL(PDO::FETCH_ASSOC);
-print_r($order_details);
  ?>
 <!doctype html>
 <!-- Website ../template by freewebsite../templates.com -->
