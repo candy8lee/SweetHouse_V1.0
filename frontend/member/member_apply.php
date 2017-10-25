@@ -80,10 +80,10 @@ if(isset($_POST['MM_insert']) && $_POST['MM_insert'] == 'INSERT'){
 						</div>
 						<div class="form-group">
 							<div class="col-sm-2">
-								<label for="phone" class="control-label">聯絡電話</label>
+								<label for="phone" class="control-label">行動電話</label>
 							</div>
 							<div class="col-sm-10">
-								<input type="text" class="form-control" id="phone" name="phone" pattern="^[0-9]*$" data-error="請輸入電話號碼" required>
+								<input type="text" class="form-control" id="mobilephone" name="mobilephone" pattern="^[0-9]*$" data-error="請輸入電話號碼" required>
 								<div class="help-block with-errors"></div>
 							</div>
 						</div>

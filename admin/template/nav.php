@@ -26,8 +26,16 @@ $page = $result->fetchAll(PDO::FETCH_ASSOC);
         <li class="nav-item">
           <a class="nav-link" href="../product_category/list.php">產品管理</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">訂單管理</a>
+        <li class="dropdown">
+          <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">訂單管理
+          <span class="caret"></span></button>
+          <ul class="dropdown-menu">
+                <li><a href="../customer_order/list.php?Status=0">待付款 / 新訂單</a></li>
+                <li><a href="../customer_order/list.php?Status=1">已付款 / 出貨中</a></li>
+                <li><a href="../customer_order/list.php?Status=2">已出貨 / 運送中</a></li>
+                <li><a href="../customer_order/list.php?Status=3">已送達 / 訂單完成</a></li>
+                <li><a href="../customer_order/list.php?Status=99">訂單取消</a></li>
+          </ul>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="../member/list.php">會員管理</a>

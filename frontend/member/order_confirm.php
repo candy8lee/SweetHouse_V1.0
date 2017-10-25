@@ -84,7 +84,7 @@ $member = $sth->fetch(PDO::FETCH_ASSOC);
 		              </div>
 									<div class="form-group">
 		                <div class="col-sm-2">
-		                  <label for="name" class="control-label">收件者</label>
+		                  <label for="name" class="control-label">收件者*</label>
 		                </div>
 		                <div class="col-sm-10">
 		                  <input type="text" class="form-control" id="name" name="name" value="<?php  echo $member['name']; ?>" data-error="請輸入收件者。" required>
@@ -93,7 +93,7 @@ $member = $sth->fetch(PDO::FETCH_ASSOC);
 		              </div>
 									<div class="form-group">
 		                <div class="col-sm-2">
-		                  <label for="phone" class="control-label">聯絡電話</label>
+		                  <label for="phone" class="control-label">聯絡電話(選填)</label>
 		                </div>
 		                <div class="col-sm-10">
 		                  <input type="text" class="form-control" id="phone" name="phone" value="<?php  echo $member['phone']; ?>">
@@ -101,10 +101,10 @@ $member = $sth->fetch(PDO::FETCH_ASSOC);
 		              </div>
 		              <div class="form-group">
 		                <div class="col-sm-2">
-		                  <label for="mobilephone" class="control-label">行動電話</label>
+		                  <label for="mobilephone" class="control-label">行動電話*</label>
 		                </div>
 		                <div class="col-sm-10">
-		                  <input type="text" class="form-control" id="mobilephone" name="mobilephone" value="<?php  echo $member['mobilephone']; ?>">
+		                  <input type="text" class="form-control" id="mobilephone" name="mobilephone" value="<?php  echo $member['mobilephone']; ?>" required>
 											<input type="hidden" name="orderNO" value="<?php  echo "QI".date('ymdHis'); ?>">
 											<input type="hidden" name="orderDate" value="<?php  echo date('y-m-d H:i:s'); ?>">
 											<input type="hidden" name="memberID" value="<?php  echo $member['memberID']; ?>">
@@ -115,7 +115,7 @@ $member = $sth->fetch(PDO::FETCH_ASSOC);
 		              </div>
 									<div class="form-group">
 		                <div class="col-sm-2">
-		                  <label for="email" class="control-label">E-mail</label>
+		                  <label for="email" class="control-label">E-mail*</label>
 		                </div>
 		                <div class="col-sm-10">
 		                  <input type="email" class="form-control" id="email" name="email" value="<?php  echo $member['email']; ?>" data-error="請輸入電子信箱。" required>
@@ -124,7 +124,7 @@ $member = $sth->fetch(PDO::FETCH_ASSOC);
 		              </div>
 		              <div class="form-group">
 		                <div class="col-sm-2">
-		                  <label for="address" class="control-label">寄送地址</label>
+		                  <label for="address" class="control-label">寄送地址*</label>
 		                </div>
 		                <div class="col-sm-10">
 		                  <input type="text" class="form-control" id="address" name="address" value="<?php  echo $member['address']; ?>" data-error="請輸入地址。" required>
