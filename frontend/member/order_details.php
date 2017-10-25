@@ -52,7 +52,8 @@ print_r($order_details);
 							<?php foreach($order_details as $row){ ?>
                 <tr data-toggle="collapse" data-target="#demo1" class="accordion-toggle">
 									<td data-title="商品圖片">
-											<a href=""><img src="../../uploads/products/<?php echo $row['picture']; ?>" alt="" width="200" height="150"></a>
+											<a href="../product_content.php?cateID=<?php echo $row['cateID']; ?>&productID=<?php echo $row['productID']; ?>">
+                      <img src="../../uploads/products/<?php echo $row['picture']; ?>" alt="" width="200" height="150"></a>
 									</td>
 									<td class="cart_description" data-title="商品名稱">
 											<h4><a href="../product_content.php?cateID=<?php echo $row['cateID']; ?>&productID=<?php echo $row['productID']; ?>"><?php echo $row['name']; ?></a></h4>
