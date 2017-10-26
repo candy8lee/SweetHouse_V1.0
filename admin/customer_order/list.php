@@ -59,7 +59,7 @@ $totalRows = count($all_orders);
                 <td><?php echo $row['mobilephone']; ?></td>
                 <td><?php echo $row['address']; ?></td>
                 <td><?php echo $row['totalPrice']; ?></td>
-                <th><a href="edit.php?Status=<?php echo $_GET['Status'];?>&orderID=<?php echo $row['orderID']; ?>" class="btn btn-danger" role="button">進入</a></th>
+                <th><a href="edit.php?Status=<?php echo $_GET['Status'];?>&orderID=<?php echo $row['orderID']; ?>&page=<?php echo $page_num;?>" class="btn btn-danger" role="button">進入</a></th>
                 <th><a href="../order_details/list.php?orderID=<?php echo $row['orderID']; ?>&page=<?php echo $page_num;?>" class="btn btn-danger" role="button">明細</a></th>
               </tr>
             <?php }?>

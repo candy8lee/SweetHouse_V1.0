@@ -1,6 +1,18 @@
 <?php
 require_once("../../connection/database.php");
 if(isset($_POST['MM_update']) && $_POST['MM_update'] == 'UPDATE'){
+
+  if(isset($_FILES['picture']['name']) && $_FILES['picture']['name'] != null){
+    if (!file_exists('../../uploads/member_pic')) mkdir('../../uploads/member_pic', 0755, true);
+    $fileTYPE = strrchr($_FILES['picture']['name'],".");//查找字串，遇到"."停止->分割副檔名
+    $filename = $_POST['account'].rand().$fileTYPE;//亂數連接副檔名->rename
+    //$filename = md5($_FILES['picture']['name']).$fileTYPE;
+    move_uploaded_file($_FILES['picture']['tmp_name'],"../../uploads/member_pic/".$filename);   // 搬移上傳檔案
+  }else{
+    $filename = $_POST['picture1'];
+  }
+
+
   $sql= "UPDATE member SET
                         picture= :picture,
                         name= :name,
@@ -47,13 +59,15 @@ $member = $sth->fetch(PDO::FETCH_ASSOC);
       </div>
       <div class="row">
         <div class="col-md-12">
-          <form class="" method="post" action="edit.php"  data-toggle="validator">
+          <form class="" method="post" action="edit.php"  data-toggle="validator" enctype="multipart/form-data">
           <div class="form-group">
             <div class="col-sm-2">
               <label for="picture" class="control-label">頭像</label>
             </div>
             <div class="col-sm-10">
+              <img src="../../uploads/member_pic/<?php echo $member['picture']; ?>"><?php echo $member['picture']; ?>
               <input type="file" class="form-control" id="picture" name="picture" data-error="請上傳圖片"/>
+              <input type="hidden" name="picture1" value="<?php echo $member['picture'];?>">
               <div class="help-block with-errors col-md-12" style="color:blue;"></div>
             </div>
           </div>
@@ -112,32 +126,6 @@ $member = $sth->fetch(PDO::FETCH_ASSOC);
           </form>
         </div>
       </div>
-      <div class="row"> </div>
-      <div class="row">
-        <div class="col-md-12">
-          <ul class="pagination my-4">
-            <li class="page-item">
-              <a class="page-link" href="#" aria-label="Previous"> <span aria-hidden="true">«</span> <span class="sr-only">Previous</span> </a>
-            </li>
-            <li class="page-item">
-              <a class="page-link" href="#">1</a>
-            </li>
-            <li class="page-item">
-              <a class="page-link" href="#">2</a>
-            </li>
-            <li class="page-item">
-              <a class="page-link" href="#">3</a>
-            </li>
-            <li class="page-item">
-              <a class="page-link" href="#">4</a>
-            </li>
-            <li class="page-item">
-              <a class="page-link" href="#" aria-label="Next"> <span aria-hidden="true">»</span> <span class="sr-only">Next</span> </a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
   </div>
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>

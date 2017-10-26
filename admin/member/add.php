@@ -3,11 +3,11 @@ require_once('../../connection/database.php');
 if(isset($_POST['MM_insert']) && $_POST['MM_insert'] == 'INSERT'){
   //upload pictures
   if(isset($_FILES['picture']['name']) && $_FILES['picture']['name'] != null){
-    if (!file_exists('../../uploads/products')) mkdir('../../uploads/products', 0755, true);
+    if (!file_exists('../../uploads/member_pic')) mkdir('../../uploads/member_pic', 0755, true);
     $fileTYPE = strrchr($_FILES['picture']['name'],".");//查找字串，遇到"."停止->分割副檔名
     $filename = $_POST['account'].rand().$fileTYPE;//亂數連接副檔名->rename
     //$filename = md5($_FILES['picture']['name']).$fileTYPE;
-    move_uploaded_file($_FILES['picture']['tmp_name'],"../../uploads/products/".$filename);   // 搬移上傳檔案
+    move_uploaded_file($_FILES['picture']['tmp_name'],"../../uploads/member_pic/".$filename);   // 搬移上傳檔案
   }
 
   $sql= "INSERT INTO member( account, password, name, picture, phone, email, address, createdDate)

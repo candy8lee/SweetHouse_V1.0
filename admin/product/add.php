@@ -7,7 +7,8 @@ if(isset($_POST['MM_insert']) && $_POST['MM_insert'] == 'INSERT'){
     if (!file_exists('../../uploads/products')) mkdir('../../uploads/products', 0755, true);
     $fileTYPE = strrchr($_FILES['picture']['name'],".");//查找字串，遇到"."停止->分割副檔名
     //$filename = rand().$fileTYPE;//亂數連接副檔名->rename
-    $filename = md5($_FILES['picture']['name']).$fileTYPE;
+    //$filename = md5($_FILES['picture']['name']).$fileTYPE;
+    $filename = mt_rand().date('ymdhis').$fileTYPE;
     move_uploaded_file($_FILES['picture']['tmp_name'],"../../uploads/products/".$filename);   // 搬移上傳檔案
   }
 

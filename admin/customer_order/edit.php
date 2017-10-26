@@ -13,7 +13,7 @@ if(isset($_POST['MM_update']) && $_POST['MM_update'] == 'UPDATE'){
   $sth ->bindParam(":orderID", $_POST['orderID'], PDO::PARAM_INT);
   $sth -> execute();
 
-  header("Location: list.php?Status=".$_POST['Status']);
+  header("Location: list.php?Status=".$_POST['Status']."&page=".$_POST['Page']);
 }
 $sql = "SELECT * FROM customer_order WHERE orderID=".$_GET['orderID'];
 $sth = $db->query($sql);
@@ -80,7 +80,7 @@ $member = $sth->fetch(PDO::FETCH_ASSOC);
                   <input type="radio" name="status" value="0" <?php if( $order['status'] == 0) echo "checked" ?>>待付款 - 新訂單。
                   <input type="radio" name="status" value="1" <?php if( $order['status'] == 1) echo "checked" ?>>已付款 -> 待出貨。
                   <input type="radio" name="status" value="2" <?php if( $order['status'] == 2) echo "checked" ?>>已出貨 -> 運送中。
-                  <input type="radio" name="status" value="3" <?php if( $order['status'] == 3) echo "checked" ?>>已送達 -> 完成訂單。 
+                  <input type="radio" name="status" value="3" <?php if( $order['status'] == 3) echo "checked" ?>>已送達 -> 完成訂單。
                   <input type="radio" name="status" value="99" <?php if( $order['status'] == 99) echo "checked" ?>>訂單取消。
               </div>
             </div>
@@ -104,9 +104,10 @@ $member = $sth->fetch(PDO::FETCH_ASSOC);
               <div class="col-sm-10 col-sm-offset-2 text-right">
                 <input type="hidden" name="MM_update" value="UPDATE">
                 <input type="hidden" name="Status" value="<?php echo $_GET['Status']; ?>">
+                <input type="hidden" name="Page" value="<?php echo $_GET['page']; ?>">
                 <input type="hidden" name="orderID" value="<?php echo $order['orderID']; ?>">
                 <input type="text" name="updatedDate" value="<?php echo date('y-m-d H:i:s') ?>">
-              <a class="btn btn-outline-primary mx-2" href="list.php">取消並回上一頁</a>
+              <a class="btn btn-outline-primary mx-2" href="list.php?Status=<?php echo $_GET['Status'];?>&page=<?php echo $_GET['page']; ?>">取消並回上一頁</a>
               <button type="submit" class="btn btn-primary">送出更新ㄌ</button>
               </div>
             </div>

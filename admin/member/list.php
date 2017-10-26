@@ -55,7 +55,7 @@ $totalRows = count($all_news);
                 <td><?php echo $row['phone']; ?></td>
                 <td><?php echo $row['email']; ?></td>
                 <th><a href="edit.php?memberID=<?php echo $row['memberID'];?>" class="btn btn-danger" role="button">編輯</a></th>
-                <th><a href="delet.php?memberID=<?php echo $row['memberID'];?>" class="btn btn-danger" role="button" onclick="if(!confirm('是否刪除此筆資料？')){return false;};">刪除</a></th>
+                <th><a href="delet.php?memberID=<?php echo $row['memberID'];?>" class="btn btn-danger" role="button" onclick="if(!confirm('是否刪除此筆資料？')){return false;};"><i class="fa fa-trash-o" aria-hidden="true"></i></a></th>
               </tr>
             <?php } ?>
             </tbody>
