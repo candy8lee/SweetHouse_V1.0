@@ -1,7 +1,17 @@
 <?php
-session_start();
-if($_SESSION['account'] == null) header('Location: member_apply.php');
- ?>
+
+      $to      = "candy8lee@hotmail.com";
+
+  		$header  = 'Content-type: text/html; charset=iso-8859-1'."\r\n";
+  		$header .= "From: service@gmail.com";
+
+  		$subject = "[Cake House] 註冊成功";
+  		$body    = "請確認帳號<br>";
+  		$body   .= "已收到帳號申請內容，如無誤請點選<a>會員登入頁</a>進行登入。";
+
+  		mail($to, $subject, $body, $header);
+
+?>
 <!doctype html>
 <!-- Website ../template by freewebsite../templates.com -->
 <html>
@@ -26,6 +36,7 @@ if($_SESSION['account'] == null) header('Location: member_apply.php');
 			<div class="footer">
 				<div id="MemberForm">
 					<h2>申請會員成功!</h2>
+          <p>請至信箱查收確認信。</p>
 					<p>
 						您已成功加入會員，請至 <a href="member_login.php">登入頁</a>，登入您的帳號，方可進行購物。
 					</p>

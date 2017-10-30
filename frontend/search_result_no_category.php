@@ -4,12 +4,9 @@ $sql = "SELECT * FROM product_category";
 $sth = $db->query($sql);
 $category = $sth->fetchALL(PDO::FETCH_ASSOC);
 
-$sth = $db->query("SELECT * FROM product WHERE categoryID=".$_GET['cateID']." ORDER BY createdDate DESC");
-$products = $sth->fetchALL(PDO::FETCH_ASSOC);
 
-//麵包屑裡的分類名稱-連結
-$sth = $db->query("SELECT * FROM product_category WHERE categoryID=".$_GET['cateID']);
-$category_name = $sth->fetch(PDO::FETCH_ASSOC);
+$sth = $db->query("SELECT * FROM product WHERE name LIKE '%".$_GET['search']."%' ORDER BY createdDate DESC");
+$products = $sth->fetchALL(PDO::FETCH_ASSOC);
  ?>
 <!doctype html>
 <!-- Website template by freewebsitetemplates.com -->
@@ -24,6 +21,7 @@ $category_name = $sth->fetch(PDO::FETCH_ASSOC);
 	<div id="page">
 		<?php require_once("template/header.php"); ?>
 		<div id="body">
+
 			<div class="header">
 				<div>
 					<h1>Products</h1>
@@ -33,7 +31,6 @@ $category_name = $sth->fetch(PDO::FETCH_ASSOC);
 				<ol class="breadcrumb">
 				  <li><a href="../index.php"><i class="fa fa-home" aria-hidden="true"></i></a></li>
 				  <li class="active"><a href="product_no_category.php">全部商品</a></li>
-          <li class="active"><a href="product_category.php?cateID=<?php echo $category_name['categoryID']; ?>"><?php echo $category_name['category']; ?></a></li>
 				</ol>
 				<ul class="Category">
 					<li><a href="product_no_category.php">全部商品</a></li>
@@ -46,11 +43,10 @@ $category_name = $sth->fetch(PDO::FETCH_ASSOC);
             </div><div class="col-md-4">
             </div>
             <div class="col-md-4">
-                <form action="search_result.php" class="" method="get">
+                <form action="search_result_no_category.php" class="search-form" method="get">
                     <div class="form-group has-feedback">
                 		<label for="search" class="sr-only">搜尋產品</label>
                 		<input type="text" class="form-control" name="search" id="search" placeholder="搜尋產品">
-                    <input type="hidden" name="cateID" value="<?php echo $products[0]['categoryID'];?>">
                   		<span class="glyphicon glyphicon-search form-control-feedback"></span>
                 	</div>
                 </form>
@@ -63,6 +59,7 @@ $category_name = $sth->fetch(PDO::FETCH_ASSOC);
 						<a href="product_content.php?cateID=<?php echo $row['categoryID'];?>&&productID=<?php echo $row['productID']; ?>"><h2><?php echo $row['name']; ?></h2></a>
 					</li>
 				<?php } ?>
+
 				</ul>
 			</div>
 		</div>

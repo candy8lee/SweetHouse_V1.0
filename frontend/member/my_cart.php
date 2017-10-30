@@ -87,6 +87,9 @@ if(isset($_POST['MM_update']) && $_POST['MM_update'] == "QuantityEdit"){
 									</td>
 								</tr>
 								<?php }else{ ?>
+									<script type="text/javascript">
+										alert('已清空，重新載入頁面。');
+									</script>
 									<tr>
 										<td colspan="7">
 											目前購物車無商品，請<a href="../product_no_category.php">前往賣場</a>選購商品。

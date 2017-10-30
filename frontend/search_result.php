@@ -4,7 +4,7 @@ $sql = "SELECT * FROM product_category";
 $sth = $db->query($sql);
 $category = $sth->fetchALL(PDO::FETCH_ASSOC);
 
-$sth = $db->query("SELECT * FROM product WHERE categoryID=".$_GET['cateID']." ORDER BY createdDate DESC");
+$sth = $db->query("SELECT * FROM product WHERE categoryID=".$_GET['cateID']." AND name LIKE '%".$_GET['search']."%' ORDER BY createdDate DESC");
 $products = $sth->fetchALL(PDO::FETCH_ASSOC);
 
 //麵包屑裡的分類名稱-連結
@@ -46,11 +46,11 @@ $category_name = $sth->fetch(PDO::FETCH_ASSOC);
             </div><div class="col-md-4">
             </div>
             <div class="col-md-4">
-                <form action="search_result.php" class="" method="get">
+                <form action="" class="search-form">
                     <div class="form-group has-feedback">
                 		<label for="search" class="sr-only">搜尋產品</label>
                 		<input type="text" class="form-control" name="search" id="search" placeholder="搜尋產品">
-                    <input type="hidden" name="cateID" value="<?php echo $products[0]['categoryID'];?>">
+                    <input type="hidden" name="cateID" value="<?php echo $_GET['cateID'];?>">
                   		<span class="glyphicon glyphicon-search form-control-feedback"></span>
                 	</div>
                 </form>

@@ -38,8 +38,21 @@ $products = $sth->fetchALL(PDO::FETCH_ASSOC);
 					<li><a href="product_category.php?cateID=<?php echo $row['categoryID'];?>"><?php echo $row['category']; ?></a></li>
 					<?php } ?>
 				</ul>
+        <div class="row">
+            <div class="col-md-4">
+            </div><div class="col-md-4">
+            </div>
+            <div class="col-md-4">
+                <form action="search_result_no_category.php" class="search-form" method="get">
+                    <div class="form-group has-feedback">
+                		<label for="search" class="sr-only">搜尋產品</label>
+                		<input type="text" class="form-control" name="search" id="search" placeholder="搜尋產品">
+                  		<span class="glyphicon glyphicon-search form-control-feedback"></span>
+                	</div>
+                </form>
+            </div>
+        </div>
 				<ul id="Products">
-
 					<?php foreach($products as $row){ ?>
 					<li>
 						<a href="product_content.php?cateID=<?php echo $row['categoryID'];?>&&productID=<?php echo $row['productID']; ?>"><img src="../uploads/products/<?php echo $row['picture']; ?>" width="200" height="150" alt=""></a>
